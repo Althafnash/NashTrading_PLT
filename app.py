@@ -1,37 +1,29 @@
 import psycopg
 from psycopg import sql
-import subprocess as sub
 import pandas as pd
 import os
 from dotenv import load_dotenv
-import json
 import yfinance as yf
-import pandas as pd
 from flask import Flask, render_template, request, jsonify
-
-app = Flask(__name__)
-
-con_params = {
-    "dbname": "API_Database",
-    "user":"postgres",
-    "password":"8837",
-    "host":"127.0.0.1",
-    "port":"5432"
-}
-
-@app.route("/")
-def dashboard():
-    return render_template("dashboard.html")
 
 load_dotenv()
 
+app = Flask(__name__)
+
 DATABASE_URL = os.environ.get("DATABASE_URL")
+
 
 def get_db_connection():
     if not DATABASE_URL:
         raise RuntimeError("DATABASE_URL is not configured")
 
     return psycopg.connect(DATABASE_URL)
+
+
+@app.route("/")
+def dashboard():
+    return render_template("dashboard.html")
+
 
 @app.route("/api/health")
 def health():
@@ -53,7 +45,8 @@ def health():
             "status": "error",
             "message": "Database connection failed"
         }), 500
-    
+
+
 @app.route("/api/eurusd")
 def eurusd():
     try:
@@ -67,20 +60,20 @@ def eurusd():
         )
 
         if df.empty:
-            return jsonify({"error": "No market data available"}),503
+            return jsonify({"error": "No market data available"}), 503
 
         latest = df.iloc[-1]
 
         return jsonify({
             "time": df.index[-1].isoformat(),
-            "open": float(latest["Open"]),
+            "Open": float(latest["Open"]),
             "High": float(latest["High"]),
-            "High": float(latest["High"]),
-            "Close": float(latest["Close"]),
+            "Close": float(latest["Close"])
         })
-    
+
     except Exception as error:
         app.logger.exception("Failed to retrieve EUR/USD data")
+
         return jsonify({
             "msg": "Unable to retrieve market data",
             "error": str(error),
@@ -88,12 +81,11 @@ def eurusd():
         }), 502
 
 
-
 @app.route("/api/gold")
 def gold():
     try:
         df = yf.download(
-            "GOLD",
+            "GC=F",
             period="1d",
             interval="1m",
             progress=False,
@@ -102,20 +94,20 @@ def gold():
         )
 
         if df.empty:
-            return jsonify({"error": "No market data available"}),503
+            return jsonify({"error": "No market data available"}), 503
 
         latest = df.iloc[-1]
 
         return jsonify({
             "time": df.index[-1].isoformat(),
-            "open": float(latest["Open"]),
+            "Open": float(latest["Open"]),
             "High": float(latest["High"]),
-            "High": float(latest["High"]),
-            "Close": float(latest["Close"]),
+            "Close": float(latest["Close"])
         })
-    
+
     except Exception as error:
-        app.logger.exception("Failed to retrieve EUR/USD data")
+        app.logger.exception("Failed to retrieve gold data")
+
         return jsonify({
             "msg": "Unable to retrieve market data",
             "error": str(error),
@@ -136,57 +128,74 @@ def btc():
         )
 
         if df.empty:
-            return jsonify({"error": "No market data available"}),503
+            return jsonify({"error": "No market data available"}), 503
 
         latest = df.iloc[-1]
 
         return jsonify({
             "time": df.index[-1].isoformat(),
-            "open": float(latest["Open"]),
+            "Open": float(latest["Open"]),
             "High": float(latest["High"]),
-            "High": float(latest["High"]),
-            "Close": float(latest["Close"]),
+            "Close": float(latest["Close"])
         })
-    
+
     except Exception as error:
-        app.logger.exception("Failed to retrieve EUR/USD data")
+        app.logger.exception("Failed to retrieve BTC data")
+
         return jsonify({
             "msg": "Unable to retrieve market data",
             "error": str(error),
             "type": type(error).__name__
         }), 502
 
+
 @app.route("/Historical")
 def Historical():
-    with get_db_connection as conn:
+    with get_db_connection() as conn:
         with conn.cursor() as cur:
-            print(f"connected to database: {con_params['dbname']} \n")
-            # sub.run("cls", shell=True)
-
-            cur.execute("SELECT schema_name FROM information_schema.schemata")
+            cur.execute("""
+                SELECT schema_name
+                FROM information_schema.schemata
+            """)
             schemas = cur.fetchall()
-                
-            cur.execute(f"SELECT table_name FROM information_schema.tables WHERE table_schema = 'HistoricalStockData';")
+
+            cur.execute("""
+                SELECT table_name
+                FROM information_schema.tables
+                WHERE table_schema = 'HistoricalStockData'
+            """)
             Tables = cur.fetchall()
 
-    return render_template("Historical.html",Tables=Tables,schemas=schemas)
+    return render_template(
+        "Historical.html",
+        Tables=Tables,
+        schemas=schemas
+    )
+
 
 @app.route("/select-stock", methods=["POST"])
 def select_table():
     table = request.form["stock"]
-    with get_db_connection as conn:
-            with conn.cursor() as cur:
-                print(f"connected to database: {con_params['dbname']} \n")
-                cur.execute(f"""SELECT * FROM "HistoricalStockData"."{table}";""")
-                schemas = cur.fetchall()
-                columns = [desc.name for desc in cur.description]
-    return  render_template(
-                "table.html",
-                columns=columns,
-                rows=schemas
+
+    with get_db_connection() as conn:
+        with conn.cursor() as cur:
+            query = sql.SQL(
+                'SELECT * FROM {}.{}'
+            ).format(
+                sql.Identifier("HistoricalStockData"),
+                sql.Identifier(table)
             )
+
+            cur.execute(query)
+
+            rows = cur.fetchall()
+            columns = [desc.name for desc in cur.description]
+
+    return render_template(
+        "table.html",
+        columns=columns,
+        rows=rows
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-    
