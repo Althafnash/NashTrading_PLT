@@ -2,7 +2,7 @@ async function UpdateMarketEURUSD() {
     console.log("[Market] UpdateMarketEURUSD started");
     try {
         console.log("[Market] Requesting EUR/USD data...");
-        const response = await fetch("https://nashtrading-jz2un71om-nash-e9eb.vercel.app/api/eurusd");
+        const response = await fetch("/api/eurusd");
         console.log("[Market] HTTP status:", response.status);
 
         if (!response.ok) {
@@ -28,7 +28,7 @@ async function UpdateMarketGOLD() {
     console.log("[GOLDMARKET] UpdateGOLDMarketGOLD running");
     try {
         console.log("[GOLDMARKET] Requesting GOLD data ");
-        const response = await fetch("https://nashtrading-jz2un71om-nash-e9eb.vercel.app/api/gold");
+        const response = await fetch("/api/gold");
         console.log("[GOLDMARKET] got the gold data" + response.status);
 
         if (!response.ok) {
@@ -55,7 +55,7 @@ async function UpdateMarketBTC() {
     console.log("[BTCMarket] is running");
     try {
         console.log("[BTCMarket] requesting data");
-        const response = await fetch("https://nashtrading-jz2un71om-nash-e9eb.vercel.app/api/btc");
+        const response = await fetch("/api/btc");
         console.log("[BTCMarket] got data from BTC");
 
         if (!response.ok) {
@@ -80,7 +80,7 @@ async function UpdateEURUSD_FVG() {
     console.log("[EURUSD FVG DATA]");
     try {
         console.log("[EUUSD] GETTING data");
-        const response = await fetch("https://nashtrading-jz2un71om-nash-e9eb.vercel.app/api/Eurusd_FVG")
+        const response = await fetch("/api/Eurusd_FVG")
         console.log("[EURUSD] got the data" + response.status);
 
         if (!response.ok) {
