@@ -1,0 +1,208 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="links">
+        <p>Trading Platform</p>
+      </div>
+    </nav>
+    <div class="content">
+      <div class="sidebar">
+        <div class="sidelinks">
+          <a href="http://127.0.0.1:5000">Live Trading Data</a>
+        </div>
+        <div class="sidelinks">
+          <a href="http://127.0.0.1:5000/Historical">Historical Trading Data</a>
+        </div>
+      </div>
+
+      <div class="contnet">
+        <section class="market-section">
+          <h1>MARKETS</h1>
+          <div class="market-card">
+            <div class="market-header">
+              <div>
+                <span class="market-label">FOREX MARKET</span>
+                <h2>EUR / USD</h2>
+                <p class="market-subtitle">Euro · US Dollar</p>
+              </div>
+
+              <span class="status" id="status">
+                <span class="status-dot"></span>
+                CONNECTED...
+              </span>
+            </div>
+
+            <div class="market-price">
+              <span class="price-label">MARKET TIME</span>
+              <p id="Time">--:--:--</p>
+            </div>
+
+            <div class="price-grid">
+              <div class="price-box">
+                <span>OPEN</span>
+                <p id="Open">--</p>
+              </div>
+
+              <div class="price-box">
+                <span>HIGH</span>
+                <p id="High">--</p>
+              </div>
+
+              <div class="price-box">
+                <span>CLOSE</span>
+                <p id="Close">--</p>
+              </div>
+            </div>
+
+            <div class="market-footer">
+              <span class="live-indicator"></span>
+              <span>MARKET DATA FEED</span>
+              <span class="update-label">AUTO REFRESH</span>
+            </div>
+          </div>
+
+          <div class="market-card">
+            <div class="market-header">
+              <div>
+                <span class="market-label">GOLD MARKET</span>
+                <h2>GOLD</h2>
+                <p class="market-subtitle">Gold</p>
+              </div>
+
+              <span class="status" id="status">
+                <span class="status-dot"></span>
+                CONNECTED...
+              </span>
+            </div>
+
+            <div class="market-price">
+              <span class="price-label">MARKET TIME</span>
+              <p id="GoldTime">--:--:--</p>
+            </div>
+
+            <div class="price-grid">
+              <div class="price-box">
+                <span>OPEN</span>
+                <p id="GoldOpen">--</p>
+              </div>
+
+              <div class="price-box">
+                <span>HIGH</span>
+                <p id="GoldHigh">--</p>
+              </div>
+
+              <div class="price-box">
+                <span>CLOSE</span>
+                <p id="GoldClose">--</p>
+              </div>
+            </div>
+
+            <div class="market-footer">
+              <span class="live-indicator"></span>
+              <span>MARKET DATA FEED</span>
+              <span class="update-label">AUTO REFRESH</span>
+            </div>
+          </div>
+
+          <div class="market-card">
+            <div class="market-header">
+              <div>
+                <span class="market-label">CRYPTO MARKET</span>
+                <h2>BTC</h2>
+                <p class="market-subtitle">Bitcoin</p>
+              </div>
+
+              <span class="status" id="status">
+                <span class="status-dot"></span>
+                CONNECTED...
+              </span>
+            </div>
+
+            <div class="market-price">
+              <span class="price-label">MARKET TIME</span>
+              <p id="BTCTime">--:--:--</p>
+            </div>
+
+            <div class="price-grid">
+              <div class="price-box">
+                <span>OPEN</span>
+                <p id="BTCOpen">--</p>
+              </div>
+
+              <div class="price-box">
+                <span>HIGH</span>
+                <p id="BTCHigh">--</p>
+              </div>
+
+              <div class="price-box">
+                <span>CLOSE</span>
+                <p id="BTCClose">--</p>
+              </div>
+            </div>
+
+            <div class="market-footer">
+              <span class="live-indicator"></span>
+              <span>MARKET DATA FEED</span>
+              <span class="update-label">AUTO REFRESH</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="market-section">
+          <h1>ANALYSIS</h1>
+          <div class="market-card">
+            <div class="market-header">
+              <div>
+                <h2>EURUSD - Fair Value Gap</h2>
+                <p class="market-subtitle">EURUSD - Fair Value Gap</p>
+              </div>
+            </div>
+
+            <div class="market-price">
+              <span class="price-label">Type of FVG</span>
+              <p id="Time">--:--:--</p>
+            </div>
+
+            <div class="price-grid">
+              <div class="price-box">
+                <span>OPEN</span>
+                <p id="Open">--</p>
+              </div>
+
+              <div class="price-box">
+                <span>HIGH</span>
+                <p id="High">--</p>
+              </div>
+
+              <div class="price-box">
+                <span>CLOSE</span>
+                <p id="Close">--</p>
+              </div>
+
+              <div class="FVG-Button">
+                <span>GET THE FVG DATA</span>
+                <button id="FVGButton">Get FVG</button>
+              </div>
+            </div>
+
+            <div class="market-footer">
+              <span class="live-indicator"></span>
+              <span>MARKET DATA FEED</span>
+              <span class="update-label">AUTO REFRESH</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+  </body>
+</html>

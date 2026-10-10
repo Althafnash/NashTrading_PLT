@@ -1,0 +1,68 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="links">
+        <p>Trading Platform</p>
+      </div>
+    </nav>
+    <div class="content">
+      <div class="sidebar">
+        <div class="sidelinks">
+          <a href="http://127.0.0.1:5000">Live Trading Data</a>
+        </div>
+        <div class="sidelinks">
+          <a href="http://127.0.0.1:5000/Historical">Historical Trading Data</a>
+        </div>
+      </div>
+
+      <div class="form-container">
+        <h2>Select Stock</h2>
+
+        <form action="/select-stock" method="POST">
+          <div class="form-group">
+            <label for="stock">Stock / Table</label>
+            <input
+              type="text"
+              id="stock"
+              name="stock"
+              placeholder="Enter stock name..."
+              required
+            />
+          </div>
+
+          <button type="submit">Search</button>
+
+          <h2>
+            Explore historical market prices, analyze trends, and study past
+            market movements using OHLC data to support your trading analysis.
+          </h2>
+        </form>
+      </div>
+
+      <div class="contnet">
+        <div class="database">
+          <h1>Table</h1>
+          <ul>
+            {% for Table in Tables %}
+            <li>
+              <a href="#">
+                <span class="table-icon">▦</span>
+                {{ Table }}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

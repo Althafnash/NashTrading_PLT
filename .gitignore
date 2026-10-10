@@ -1,0 +1,7 @@
+.neon
+.env.local
+node_modules/
+.env
+.venv/
+__pycache__/
+*.pyc
