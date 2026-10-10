@@ -174,7 +174,7 @@ def Historical():
 @app.route("/select-stock", methods=["POST"])
 def select_table():
     table = request.form["stock"]
-    with psycopg.connect(**con_params) as conn:
+    with get_db_connection() as conn:
             with conn.cursor() as cur:
                 print(f"connected to database: {con_params['dbname']} \n")
                 cur.execute(f"""SELECT * FROM "HistoricalStockData"."{table}";""")
