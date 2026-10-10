@@ -12,6 +12,36 @@ app = Flask(__name__)
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
+def FVG(df):
+    df = df.copy()
+
+    candle1_high = df["High"].shift(2)
+    candle1_low = df["Low"].shift(2)
+
+    candle3_high = df["High"]
+    candle3_low = df["Low"]
+
+    df["FVG_Type"] = None
+    df["FVG_High"] = float("nan")
+    df["FVG_Lower"] = float("nan")
+    df["FVG_Midpoint"] = float("nan")
+
+    bullish = candle1_high < candle3_low
+    bearish = candle1_high > candle3_low
+
+    df.loc[bullish, "FVG_Type"] = "Bullish"
+    df.loc[bullish, "FVG_Lower"] = candle1_high[bullish]
+    df.loc[bullish, "FVG_High"] = candle1_low[bullish]
+
+    df.loc[bearish, "FVG_Type"] = "Bearish"
+    df.loc[bearish, "FVG_Lower"] = candle1_high[bearish]
+    df.loc[bearish, "FVG_High"] = candle1_low[bearish]
+
+    df["FVG_Midpoint"] = (
+        df["FVG_Lower"] + df["FVG_High"] 
+    ) / 2
+
+    return df
 
 def get_db_connection():
     if not DATABASE_URL:
@@ -196,6 +226,52 @@ def select_table():
         columns=columns,
         rows=rows
     )
+
+@app.route("/api/eurusd/FVG")
+def EURUSDFVG():
+    try:
+        df = yf.download(
+            "EURUSD=X",
+            period="5d",
+            interval="1m",
+            progress=False,
+            auto_adjust=False,
+            multi_level_index=False
+        )
+
+        if df.empty:
+            return jsonify({"error": "No market data available"}), 503
+
+        result = FVG(df)
+        result = result[result["FVG_Type"].notna()].copy()
+
+        result = result.reset_index()
+
+        time_column = result.columns[0]
+
+        result = result.rename(columns={time_column: "Datetime"})
+
+        result["Datetime"] = result["Datetime"].astype(str)
+
+        return jsonify({
+            "FVG": result[
+                [
+                    "Datetime",
+                    "FVG_Type",
+                    "FVG_Lower",
+                    "FVG_High",
+                    "FVG_Midpoint"
+                ]
+            ].to_dict(orient="records")
+        })
+
+    except Exception as error:
+        app.logger.exception("Failed to calculate EUR/USD FVG")
+        return jsonify({
+            "error": str(error),
+            "type": type(error).__name__
+        }), 500
+    
 
 if __name__ == "__main__":
     app.run(debug=True)

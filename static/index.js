@@ -13,7 +13,7 @@ async function UpdateMarketEURUSD() {
         console.log("[Market] Received data:", data);
         document.getElementById("Time").textContent = data.time ;
         document.getElementById("Open").textContent =
-            Number(data.open).toFixed(10);
+            Number(data.Open).toFixed(10);
         document.getElementById("High").textContent =
             Number(data.High).toFixed(10);
         document.getElementById("Close").textContent =
@@ -39,7 +39,7 @@ async function UpdateMarketGOLD() {
         console.log("[GOLDMARKET] Received data", data);
         document.getElementById("GoldTime").textContent = data.time;
         document.getElementById("GoldOpen").textContent = 
-            Number(data.open).toFixed(10)
+            Number(data.Open).toFixed(10)
         document.getElementById("GoldHigh").textContent = 
             Number(data.High).toFixed(10)
         document.getElementById("GoldClose").textContent = 
@@ -66,7 +66,7 @@ async function UpdateMarketBTC() {
         console.log("[BTCMarket] data recevied",data);
         document.getElementById("BTCTime").textContent = data.time;
         document.getElementById("BTCOpen").textContent =
-            Number(data.open).toFixed(10);
+            Number(data.Open).toFixed(10);
         document.getElementById("BTCClose").textContent = 
             Number(data.Close).toFixed(10);
         document.getElementById("BTCHigh").textContent =
@@ -78,22 +78,45 @@ async function UpdateMarketBTC() {
 
 async function UpdateEURUSD_FVG() {
     console.log("[EURUSD FVG DATA]");
+
     try {
-        console.log("[EUUSD] GETTING data");
-        const response = await fetch("/api/Eurusd_FVG")
-        console.log("[EURUSD] got the data" + response.status);
+        console.log("[EURUSD] Getting data");
+
+        const response = await fetch("/api/eurusd/FVG");
+
+        console.log("[EURUSD] Response status:", response.status);
 
         if (!response.ok) {
-            throw new Error("[EURUSD] error" + response.status);
+            throw new Error("EURUSD FVG request failed: " + response.status);
         }
 
-        const data = response.json();
-        
-        
+        const data = await response.json();
+
+        console.log("[EURUSD FVG] Received data:", data);
+
+        if (!data.FVG || data.FVG.length === 0) {
+            document.getElementById("EURUSDFVG-Time").textContent =
+                "No FVG found";
+            return;
+        }
+
+        const latestFVG = data.FVG[data.FVG.length - 1];
+
+        document.getElementById("EURUSDFVG-Time").textContent =
+            latestFVG.Datetime;
+        document.getElementById("EURUSDFVG-High").textContent =
+            latestFVG.FVG_High;
+        document.getElementById("EURUSDFVG-Close").textContent =
+            latestFVG.FVG_High;
+        document.getElementById("EURUSDFVG-Open").textContent =
+            latestFVG.FVG_Midpoint;
+        document.getElementById("type").textContent =
+            latestFVG.FVG_Type;
+
     } catch (error) {
-        console.error("[BTCMarket] Update failed:", error);
+        console.error("[EURUSD FVG] Update failed:", error);
     }
-}
+    }
 const FVGButton = document.getElementById("FVGButton");
 FVGButton.addEventListener("click", () => {
     UpdateEURUSD_FVG();
