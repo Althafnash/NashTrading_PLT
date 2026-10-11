@@ -1,0 +1,242 @@
+@media (min-width: 769px) and (max-width: 1023px) {
+
+    nav {
+        height: 65px;
+        padding: 0 20px;
+    }
+
+    .content {
+        min-height: calc(100vh - 65px);
+    }
+
+    .sidebar {
+        width: 200px;
+        padding: 20px 10px;
+        flex-shrink: 0;
+    }
+
+    .sidelinks a {
+        font-size: 17px;
+        padding: 12px;
+    }
+
+    .contnet {
+        padding: 20px;
+        gap: 20px;
+        flex-direction: column;
+    }
+
+    .database {
+        max-width: 100%;
+        max-height: none;
+    }
+
+    .database li a {
+        font-size: 25px;
+    }
+
+    .form-container {
+        max-width: 100%;
+    }
+
+    .market-section {
+        max-width: 100%;
+        height: auto;
+        overflow: visible;
+    }
+
+    .market-card {
+        max-width: 100%;
+        margin: 15px 0;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    /* ---------- NAVBAR ---------- */
+
+    nav {
+        height: 60px;
+        padding: 0 15px;
+    }
+
+    .links p {
+        font-size: 17px;
+    }
+
+    .links p::before {
+        width: 3px;
+        height: 18px;
+        margin-right: 8px;
+    }
+
+    .content {
+        display: block;
+        min-height: calc(100vh - 60px);
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 8px;
+        border-right: none;
+        border-bottom: 1px solid #1d2a3d;
+    }
+
+    .sidelinks {
+        margin: 0;
+    }
+
+    .sidelinks a {
+        padding: 10px 12px;
+        font-size: 15px;
+    }
+
+    .contnet {
+        width: 100%;
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .database {
+        width: 100%;
+        max-width: 100%;
+        max-height: none;
+        padding: 15px;
+        overflow-x: auto;
+        overflow-y: visible;
+    }
+
+    .database h1 {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .database li a {
+        font-size: 20px;
+        padding: 11px;
+    }
+
+    .table-icon {
+        width: 27px;
+        height: 27px;
+        margin-right: 8px;
+    }
+
+    .form-container {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .form-container h2 {
+        font-size: 23px;
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+    }
+
+    .form-group input {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .form-container button {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .market-section {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        padding: 12px;
+        overflow: visible;
+        box-shadow: 0 10px 30px rgba(2, 91, 226, 0.25);
+    }
+
+    .market-section h1 {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+
+    .market-card {
+        width: 100%;
+        max-width: 100%;
+        margin: 10px 0;
+        padding: 16px;
+        border-radius: 14px;
+    }
+
+    .market-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding-bottom: 16px;
+    }
+
+    .market-header h2 {
+        font-size: 21px;
+    }
+
+    .market-subtitle {
+        font-size: 12px;
+    }
+
+    .status {
+        font-size: 10px;
+        padding: 6px 8px;
+    }
+
+    .market-price {
+        padding: 18px 0;
+    }
+
+    .market-price p {
+        font-size: clamp(24px, 8vw, 32px);
+    }
+
+    .price-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .price-box {
+        padding: 12px;
+    }
+
+    .price-box p {
+        font-size: 17px;
+    }
+
+    .market-footer {
+        flex-wrap: wrap;
+        margin-top: 18px;
+        padding-top: 12px;
+    }
+
+    .update-label {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .FVG-Button {
+        width: 100%;
+    }
+
+    #FVGButton {
+        width: 100%;
+        margin: 10px 0;
+        font-size: 16px;
+        padding: 13px;
+    }
+
+    .stock-table {
+        min-width: 650px;
+    }
+
+}
