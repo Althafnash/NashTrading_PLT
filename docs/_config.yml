@@ -1,0 +1,9 @@
+title: Nash Trading
+description: Market analytics and trading platform documentation
+
+theme: jekyll-theme-minimal
+
+markdown: kramdown
+
+plugins:
+  - jekyll-feed
