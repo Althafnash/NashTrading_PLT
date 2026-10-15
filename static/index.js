@@ -117,6 +117,7 @@ async function UpdateEURUSD_FVG() {
         console.error("[EURUSD FVG] Update failed:", error);
     }
     }
+
 const FVGButton = document.getElementById("FVGButton");
 FVGButton.addEventListener("click", () => {
     UpdateEURUSD_FVG();
