@@ -5,3 +5,42 @@ node_modules/
 .venv/
 __pycache__/
 *.pyc
+
+# =========================================================================
+# Flutter project in /windowsApp
+# =========================================================================
+
+# Flutter / Dart core tools
+windowsApp/nash_trading_app/nash_trading_app.dart_tool/
+windowsApp/nash_trading_app/build/
+windowsApp/nash_trading_app/.flutter-plugins
+windowsApp/nash_trading_app/.flutter-plugins-dependencies
+windowsApp/nash_trading_app/ephemeral/
+
+# Windows specific build artifacts
+windowsApp/nash_trading_app/windows/flutter/ephemeral/
+windowsApp/nash_trading_app/windows/CMakeLists.txt.user
+windowsApp/nash_trading_app/windows/out/
+windowsApp/nash_trading_app/windows/x64/
+windowsApp/nash_trading_app/*.suo
+windowsApp/nash_trading_app/*.user
+
+# Android & iOS artifacts (if you build for them later)
+windowsApp/nash_trading_app/android/.gradle/
+windowsApp/nash_trading_app/android/local.properties
+windowsApp/nash_trading_app/ios/Pods/
+windowsApp/nash_trading_app/ios/.symlinks/
+windowsApp/nash_trading_app/ios/Flutter/Flutter.podspec
+windowsApp/nash_trading_app/ios/Flutter/Generated.xcconfig
+windowsApp/nash_trading_app/ios/Flutter/flutter_export_environment.sh
+
+# Secrets and environment configurations
+windowsApp/nash_trading_app/.env
+windowsApp/nash_trading_app/.env.*
+windowsApp/nash_trading_app/*.jks
+windowsApp/nash_trading_app/android/key.properties
+
+# IDEs and Editors
+windowsApp/nash_trading_app/.idea/
+windowsApp/nash_trading_app/.vscode/
+*.DS_Store

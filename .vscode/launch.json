@@ -1,0 +1,29 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "nash_trading_app",
+            "cwd": "CrossPlatformApp\\nash_trading_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "nash_trading_app (profile mode)",
+            "cwd": "windowsApp\\nash_trading_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "nash_trading_app (release mode)",
+            "cwd": "windowsApp\\nash_trading_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}

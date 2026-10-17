@@ -36,5 +36,6 @@ You can check out the online app here
 ```bash
 https://nashtrading-two.vercel.app
 ```
+cls
 
-Documentation → ("https://google.com")
+Documentation → ["NashTrading Docs"]("https://althafnash.github.io/NashTrading_PLT/")
