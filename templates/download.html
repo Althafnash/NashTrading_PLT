@@ -1,0 +1,96 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nash Trading Platform</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='Responsive.css') }}"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{{ url_for('static', filename='apple-touch-icon.png') }}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{{ url_for('static', filename='favicon-32x32.png') }}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{{ url_for('static', filename='favicon-16x16.png') }}"
+    />
+    <link
+      rel="manifest"
+      href="{{ url_for('static', filename='site.webmanifest') }}"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="links">
+        <p>Trading Platform</p>
+      </div>
+    </nav>
+    <div class="content">
+      <div class="sidebar">
+        <div class="sidelinks">
+          <a href="/">Live Trading Data</a>
+        </div>
+        <div class="sidelinks">
+          <a href="/Historical">Historical Trading Data</a>
+        </div>
+        <div class="sidelinks">
+          <a href="/downloads">Downloads</a>
+        </div>
+      </div>
+
+      <div class="contnet">
+        <section class="market-section">
+          <h1>Download For you preferred Platform</h1>
+          <h2>Android APK</h2>
+          <div class="market-card">
+            <div class="market-header">
+              <div>
+                <span class="market-label">Download Android APK</span>
+                <h2>Android APK</h2>
+              </div>
+
+              <button class="download" id="APKDownload">
+                <span class="status" id="status">
+                  <span class="status-dot"></span>
+                  Download...
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <h2>Windows MSI</h2>
+          <div class="market-card">
+            <div class="market-header">
+              <div>
+                <span class="market-label">Download Windows MSI</span>
+                <h2>Windows MSI</h2>
+              </div>
+
+              <button class="download" id="MSIDownload">
+                <span class="status" id="status">
+                  <span class="status-dot"></span>
+                  Download...
+                </span>
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+  </body>
+</html>

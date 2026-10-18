@@ -54,6 +54,9 @@ def get_db_connection():
 def dashboard():
     return render_template("dashboard.html")
 
+@app.route("/downloads")
+def download():
+    return render_template("download.html")
 
 @app.route("/api/health")
 def health():

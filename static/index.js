@@ -119,9 +119,31 @@ async function UpdateEURUSD_FVG() {
     }
 
 const FVGButton = document.getElementById("FVGButton");
-FVGButton.addEventListener("click", () => {
+FVGButton?.addEventListener("click", () => {
     UpdateEURUSD_FVG();
 })
+
+const MSIDownload = document.getElementById("MSIDownload");
+MSIDownload?.addEventListener("click", () => {
+    const link = document.createElement("a");
+    link.href = "./static/NashTradingPLT.msix";
+    link.download = "NashTradingPLT.msix";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.remove(link);
+});
+
+const APKDownload = document.getElementById("APKDownload");
+APKDownload?.addEventListener("click", () => {
+    const link = document.createElement("a");
+    link.href = "./static/NashTradingPLT.apk";
+    link.download = "NashTradingPLT.apk";
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.remove(link);
+});
 
 UpdateMarketEURUSD();
 UpdateMarketGOLD();

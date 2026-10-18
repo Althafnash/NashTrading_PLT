@@ -353,8 +353,22 @@ nav {
     border: 1px solid #35445a;
     border-radius: 20px;
     color: #a9bad0;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background-color: #061730;
+    border: 1px solid #083476;
+    border-radius: 20px;
+    color: #acd0ff;
     font-size: 11px;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 .status-dot,
@@ -362,7 +376,7 @@ nav {
     width: 7px;
     height: 7px;
     border-radius: 50%;
-    background: greenyellow;
+    background: rgb(54, 47, 255);
     box-shadow: 0 0 10px currentColor;
 }
 
