@@ -1,0 +1,17 @@
+{
+  "headers": [
+    {
+      "source": "/(*).msix",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/msix"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment"
+        }
+      ]
+    }
+  ]
+}
